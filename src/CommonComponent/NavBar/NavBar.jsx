@@ -7,6 +7,12 @@ const NavBar = () => {
         <li>
            <Link to='/'>Home</Link>
         </li>
+        <li>
+           <Link to='/login'>Log In</Link>
+        </li>
+        <li>
+           <Link to='/signUp'>Sign Up</Link>
+        </li>
       
     </>
     return (
@@ -34,7 +40,7 @@ const NavBar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <Link className="btn bg-orange-600 text-white font-bold">Log in</Link>
+    <Link className="btn bg-orange-600 text-white font-bold">DashBoard</Link>
   </div>
 </div>
             
