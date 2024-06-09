@@ -3,6 +3,7 @@ import ClientLayOut from "../LayOut/ClientLayOut";
 import Home from "../Pages/Home/Home";
 import LogIn from "../Pages/LogIn/LogIn";
 import SignUp from "../Pages/SignUp/SignUp";
+import AllScholarShips from "../Pages/AllScholarShips/AllScholarShips";
 
 const router = createBrowserRouter([
     
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         path:'/signUp',
         element:<SignUp></SignUp>,
       },
+      {
+        path:'/allscholarship',
+        element:<AllScholarShips></AllScholarShips>
+      }
       ]
     },
   ]);
