@@ -1,8 +1,14 @@
 //import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import useAuthContext from "../../Hooks/useAuthContext";
 
 
 const NavBar = () => {
+   const {user,logOut}=useAuthContext();
+   const handleSignOut = () => {
+    logOut().then().catch();
+    Navigate("/");
+  };
     const navBar=<>
         <li>
            <Link to='/'>Home</Link>
@@ -10,12 +16,18 @@ const NavBar = () => {
         <li>
           <Link to='/allscholarship'>All ScholarShips</Link>
         </li>
+       {
+        (!user)?
+       <>
         <li>
-           <Link to='/login'>Log In</Link>
-        </li>
-        <li>
-           <Link to='/signUp'>Sign Up</Link>
-        </li>
+        <Link to='/login'>Log In</Link>
+     </li>
+     <li>
+        <Link to='/signUp'>Sign Up</Link>
+     </li>
+       </>:
+     <></>
+       }
         
       
     </>
@@ -44,7 +56,40 @@ const NavBar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <Link className="btn bg-orange-600 text-white font-bold">DashBoard</Link>
+  {user ? (
+            <>
+              <div className="dropdown  dropdown-hover mr-0 md:mr-10 ">
+                <div tabIndex={0} role="button" className="btn m-1">
+                  <Link>
+                    <img
+                      src={user.photoURL}
+                      alt=""
+                      className="w-10 rounded-full mr-4"
+                    />
+                  </Link>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content z-20 menu  shadow bg-base-100 rounded-box w-40"
+                >
+                  <li>
+                    <Link>{user.displayName}</Link>
+                  </li>
+                  <li>
+                    <button onClick={handleSignOut} className="btn">
+                      Sign Out
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <Link className="btn bg-orange-600 text-white font-bold">DashBoard</Link>
+            </>
+          ) : (
+            <>
+          
+            </>
+          )}
+    
   </div>
 </div>
             

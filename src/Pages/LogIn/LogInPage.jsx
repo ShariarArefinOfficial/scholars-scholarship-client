@@ -1,13 +1,28 @@
 //import React from 'react';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import img1 from '../../assets/img2.png'
+import useAuthContext from "../../Hooks/useAuthContext";
+import Swal from 'sweetalert2'
+import { useEffect } from "react";
+
 
 
 const LogInPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const { signIn,user } = useAuthContext();
+
 
     const from = location.state?.from?.pathname || "/";
+    console.log(from)
+
+    useEffect(()=>{
+        if(user){
+            navigate(from, { replace: true });
+ 
+        }
+
+    },[user])
 
 
 
@@ -17,8 +32,23 @@ const LogInPage = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
-        
+        signIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                Swal.fire({
+                    title: 'User Login Successful.',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                });
+                navigate(from, { replace: true });
+            })
     }
+
     return (
         <div>
             <div className="hero min-h-screen bg-base-200">

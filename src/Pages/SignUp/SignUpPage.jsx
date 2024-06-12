@@ -2,15 +2,44 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import img1 from '../../assets/img2.png'
+import useAuthContext from "../../Hooks/useAuthContext";
+import Swal from "sweetalert2";
+import { useEffect } from "react";
 
 
 const SignUpPage = () => {
     const navigate = useNavigate();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const onSubmit = data => {
-        console.log(data)
+    const { createUser, updateUserProfile , user } =useAuthContext()
 
-       
+     useEffect(()=>{
+        if(user){
+            navigate('/')
+        }
+     },[user])
+     
+    const onSubmit = data => {
+        console.log(data);
+        createUser(data.email, data.password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                updateUserProfile(data.name, data.photoURL)
+                    .then(() => {
+                        console.log('user profile info updated')
+                        reset();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'User created successfully.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate('/');
+
+                    })
+                    .catch(error => console.log(error))
+            })
     };
 
     return (
