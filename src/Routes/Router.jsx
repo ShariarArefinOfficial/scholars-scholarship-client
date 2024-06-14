@@ -4,6 +4,8 @@ import Home from "../Pages/Home/Home";
 import LogIn from "../Pages/LogIn/LogIn";
 import SignUp from "../Pages/SignUp/SignUp";
 import AllScholarShips from "../Pages/AllScholarShips/AllScholarShips";
+import PrivateRoute from "../Providers/PrivateRoute";
+import ScholarShipDetails from "../Pages/ScholarShipDetails/ScholarShipDetails";
 
 const router = createBrowserRouter([
     
@@ -30,7 +32,12 @@ const router = createBrowserRouter([
       {
         path:'/allscholarship',
         element:<AllScholarShips></AllScholarShips>
-      }
+      },
+      {
+        path:'/scholarship/:id',
+        element:<PrivateRoute><ScholarShipDetails></ScholarShipDetails></PrivateRoute>,
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_URL}/scholarship/${params.id}`)
+      },
       ]
     },
   ]);

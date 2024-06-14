@@ -1,54 +1,75 @@
-//import React from 'react';
+// 
 
 import { useEffect, useState } from "react";
-import axios from 'axios'
 
-
-const useScholarShip = (search) => {
-    const [scholarship, setscholarship] = useState([]);
+const useScholarShip = (search, page = 1, limit = 6) => {
+    const [scholarship, setScholarship] = useState([]);
     const [loading, setLoading] = useState(true);
-    //const query = new URLSearchParams(searchParams).toString();
-   // console.log(query)
-   const getSearch=()=>{
-   // console.log('search is start')
-   // console.log(search)
 
-
-    //==Fetch
-    fetch(`${import.meta.env.VITE_URL}/scholarships/${search}`)
-    .then(res => res.json())
-    .then(data => {
-        setscholarship(data);
-        setLoading(false);
-    });
-
-    }
-
-    const getData=()=>{
-        console.log('get data')
-        fetch(`${import.meta.env.VITE_URL}/scholarship`)
-        .then(res => res.json())
-        .then(data => {
-            setscholarship(data);
+    const fetchScholarshipData =  (url) => {
+        try {
+            setLoading(true);
+           // console.log("Fetching data from URL:", url);
+            fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data.results);
+                setScholarship(data.results);
+                setLoading(false);
+            })
+            
+            
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+        } finally {
             setLoading(false);
-        });
-    }
+        }
+    };
+    const fetchSearchScholarshipData =  (url) => {
+        try {
+            setLoading(true);
+           // console.log("Fetching data from URL:", url);
+            fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                
+                setScholarship(data);
+                setLoading(false);
+            })
+            
+            
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const getSearch = (searchTerm, page, limit) => {
+        const url = `${import.meta.env.VITE_URL}/scholarships/${searchTerm}?_page=${page}&_limit=${limit}`;
+       // console.log("Search URL:", url);
+        fetchSearchScholarshipData(url);
+    };
+
+    const getData = (page, limit) => {
+        const url = `${import.meta.env.VITE_URL}/scholarship?_page=${page}&_limit=${limit}`;
+       // console.log("Data URL:", url);
+        fetchScholarshipData(url);
+    };
 
     useEffect(() => {
-       if(!(search)){
-       // console.log(search)
-        getData();
-       }
-    }, [])
-    useEffect(()=>{
-       // console.log(search)
+       // console.log("Current search:", search, "Page:", page, "Limit:", limit);
+        if (search) {
+            getSearch(search, page, limit);
+        } 
         
-        if(search){
-            
-          getSearch(search)
-                  }
-      },[search])
-    return [scholarship, loading]
+        if(!search){
+           // console.log('love')
+            getData(page, limit);
+        }
+    }, [search, page, limit]);
+
+    return [scholarship, loading];
 };
 
 export default useScholarShip;
