@@ -14,7 +14,7 @@ const LogInPage = () => {
 
 
     const from = location.state?.from?.pathname || "/";
-    console.log(from)
+    //console.log(from)
 
     useEffect(()=>{
         if(user){
