@@ -82,7 +82,7 @@ const NavBar = () => {
                   </li>
                 </ul>
               </div>
-              <Link className="btn bg-orange-600 text-white font-bold">DashBoard</Link>
+              <Link to='/DashBoard' className="btn bg-orange-600 text-white font-bold">DashBoard</Link>
             </>
           ) : (
             <>

@@ -12,6 +12,7 @@ const AllScholarShipsPage = () => {
     const limit = 6;
    
     const [scholarship,loading] = useScholarShip(search, page, limit);
+    //console.log(scholarship)
 
     
 

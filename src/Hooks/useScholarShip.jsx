@@ -13,7 +13,7 @@ const useScholarShip = (search, page = 1, limit = 6) => {
             fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data.results);
+               // console.log(data.results);
                 setScholarship(data.results);
                 setLoading(false);
             })

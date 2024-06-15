@@ -6,6 +6,8 @@ import SignUp from "../Pages/SignUp/SignUp";
 import AllScholarShips from "../Pages/AllScholarShips/AllScholarShips";
 import PrivateRoute from "../Providers/PrivateRoute";
 import ScholarShipDetails from "../Pages/ScholarShipDetails/ScholarShipDetails";
+import DashBoard from "../LayOut/DashBoard";
+import MyApplication from "../Pages/MyApplication/MyApplication";
 
 const router = createBrowserRouter([
     
@@ -40,6 +42,17 @@ const router = createBrowserRouter([
       },
       ]
     },
+    {
+      path: 'dashboard',
+      element: <DashBoard></DashBoard>,
+      children: [
+        {
+          path: 'myApplication',
+          element: <MyApplication></MyApplication>
+        }
+      ]
+    }
+    
   ]);
 
 
