@@ -19,14 +19,13 @@ const NavBar = () => {
        {
         (!user)?
        <>
-        <li>
-        <Link to='/login'>Log In</Link>
-     </li>
-     <li>
-        <Link to='/signUp'>Sign Up</Link>
-     </li>
+    
        </>:
-     <></>
+     <>
+      <li>
+      <Link to='/DashBoard' >DashBoard</Link>
+      </li>
+     </>
        }
         
       
@@ -82,10 +81,17 @@ const NavBar = () => {
                   </li>
                 </ul>
               </div>
-              <Link to='/DashBoard' className="btn bg-orange-600 text-white font-bold">DashBoard</Link>
+             
             </>
           ) : (
             <>
+            <Link to='/login'>
+            <button className="border-2 border-orange-500 bg-orange-500 font-bold text-white rounded-3xl px-5 py-3">Log in</button>
+            </Link>
+            <Link to='/signUp'>
+            <button className="ml-4 border-2 border-orange-500 font-bold text-orange-500 rounded-3xl px-5 py-3">Sign Up</button>
+            </Link>
+            
           
             </>
           )}

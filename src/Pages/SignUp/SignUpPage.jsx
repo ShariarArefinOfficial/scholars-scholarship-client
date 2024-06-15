@@ -5,9 +5,11 @@ import img1 from '../../assets/img2.png'
 import useAuthContext from "../../Hooks/useAuthContext";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 
 const SignUpPage = () => {
+    const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { createUser, updateUserProfile , user } =useAuthContext()
@@ -18,24 +20,36 @@ const SignUpPage = () => {
         }
      },[user])
      
-    const onSubmit = data => {
-        console.log(data);
+     const onSubmit = data => {
+
         createUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        console.log('user profile info updated')
-                        reset();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'User created successfully.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        navigate('/');
+                        // create user entry in the database
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email,
+                            password:data.password
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    console.log('user added to the database')
+                                    reset();
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        icon: 'success',
+                                        title: 'User created successfully.',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    navigate('/');
+                                }
+                            })
+
 
                     })
                     .catch(error => console.log(error))
