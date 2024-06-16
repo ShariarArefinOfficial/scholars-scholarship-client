@@ -12,6 +12,7 @@ import AllUsers from "../DashBoard/AllUsers/AllUsers";
 import AdminProfile from "../DashBoard/AdminProfile/AdminProfile";
 import AdminRoute from "./AdminRoute";
 import AddScholarShips from "../DashBoard/AddScholarship/AddScholarShips";
+import ManageScholarShip from "../DashBoard/ManageScholarShip/ManageScholarShip";
 
 const router = createBrowserRouter([
     
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
           path:'/dashboard/addscholarship',
           element:<PrivateRoute><AddScholarShips></AddScholarShips></PrivateRoute>,
         },
+        {
+          path:'/dashboard/managescholarship',
+          element:<PrivateRoute><ManageScholarShip></ManageScholarShip></PrivateRoute>,
+        }
 
         
       ]

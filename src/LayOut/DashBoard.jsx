@@ -33,9 +33,9 @@ const DashBoard = () => {
                             </li>
 
                             <li>
-                                <NavLink to="/dashboard/scholarships">
+                                <NavLink to="/dashboard/managescholarships">
                                     <FaList></FaList>
-                                    Manage Items</NavLink>
+                                    Manage ScholarShip</NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/bookings">
