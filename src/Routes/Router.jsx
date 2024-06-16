@@ -8,6 +8,9 @@ import PrivateRoute from "../Providers/PrivateRoute";
 import ScholarShipDetails from "../Pages/ScholarShipDetails/ScholarShipDetails";
 import DashBoard from "../LayOut/DashBoard";
 import MyApplication from "../Pages/MyApplication/MyApplication";
+import AllUsers from "../DashBoard/AllUsers/AllUsers";
+import AdminProfile from "../DashBoard/AdminProfile/AdminProfile";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
     
@@ -40,16 +43,25 @@ const router = createBrowserRouter([
         element:<PrivateRoute><ScholarShipDetails></ScholarShipDetails></PrivateRoute>,
         loader: ({ params }) => fetch(`${import.meta.env.VITE_URL}/scholarship/${params.id}`)
       },
+      {
+        path: 'myApplication',
+        element: <MyApplication></MyApplication>
+      }
       ]
     },
     {
       path: 'dashboard',
-      element: <DashBoard></DashBoard>,
+      element: <PrivateRoute><DashBoard></DashBoard></PrivateRoute>,
       children: [
         {
-          path: 'myApplication',
-          element: <MyApplication></MyApplication>
+          path:'/dashboard/users',
+          element:<PrivateRoute><AllUsers></AllUsers></PrivateRoute>,
+        },
+        {
+          path:'/dashboard/Profile',
+          element:<PrivateRoute><AdminProfile></AdminProfile></PrivateRoute>,
         }
+        
       ]
     }
     

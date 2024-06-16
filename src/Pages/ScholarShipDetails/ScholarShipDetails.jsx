@@ -1,17 +1,29 @@
 //import React from 'react';
 
-import { useLoaderData } from "react-router-dom";
+import { Navigate, useLoaderData } from "react-router-dom";
 import Reviews from "./Reviews/Reviews";
 import SectionTitle from "../../CommonComponent/SectionTitle/SectionTitle";
 import PageTitle from "../../CommonComponent/PageTitle/PageTitle";
+import Swal from "sweetalert2";
+//import { useContext } from "react";
+import useAuthContext from "../../Hooks/useAuthContext";
+//import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useApplication from "../../Hooks/useApplication";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useEffect, useState } from "react";
 
 const heading='User Reviews'
 const description='Explore genuine reviews from students who have benefited from our scholarship programs. Hear their stories, learn about their experiences, and see how these scholarships have impacted their educational journeys.'
 
 
 const ScholarShipDetails = () => {
+    const {user}=useAuthContext()
     const scholarship=useLoaderData()
-   // console.log(scholarship)
+
+    const axiosPublic=useAxiosPublic()
+    const [, refetch] = useApplication();
+
+  // console.log(scholarship)
     const {
         university_name,
         scholarship_category,
@@ -22,11 +34,58 @@ const ScholarShipDetails = () => {
         degree_name,
         scholarship_description,
         university_location,
-        reviews
+        reviews,
+        _id,
+        university_image
 
       } = scholarship;
       const title=scholarship_category
-     // console.log( title)
+     //console.log( user.email)
+     const handleAddApplication = () => {
+        if (user && user.email) {
+            //send cart item to the database
+            const applicationItem = {
+                scholarshipId: _id,
+                email: user.email,
+                university_name,                
+                university_image,
+                application_fees,
+                scholarship_category
+            }
+            axiosPublic.post('/applications', applicationItem)
+                .then(res => {
+                    console.log(res.data)
+                    if (res.data.insertedId) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: ` added to your application list`,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        // refetch cart to update the cart items count
+                        refetch();
+                    }
+
+                })
+        }
+        else {
+            Swal.fire({
+                title: "You are not Logged In",
+                text: "Please login to add to the cart?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, login!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    //   send the user to the login page
+                    Navigate('/login', { state: { from: location } })
+                }
+            });
+        }
+    }
     return (
         <>
         <PageTitle title={title}></PageTitle>
@@ -52,7 +111,9 @@ const ScholarShipDetails = () => {
                     <p className=" font-medium"><span className="text-xl font-bold mr-4 text-orange-500">Applicaition Fees :</span>$ {application_fees} </p>
                 </div>
                 <div className="text-center my-10">
-                    <button className="btn bg-orange-500 text-white">Apply This ScholarShip</button>
+                    <button
+                    onClick={handleAddApplication}
+                    className="btn bg-orange-500 text-white">Apply This ScholarShip</button>
                 </div>
             </div>
             <SectionTitle heading={heading} description={description}></SectionTitle>
