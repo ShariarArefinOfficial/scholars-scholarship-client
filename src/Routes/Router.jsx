@@ -11,6 +11,7 @@ import MyApplication from "../Pages/MyApplication/MyApplication";
 import AllUsers from "../DashBoard/AllUsers/AllUsers";
 import AdminProfile from "../DashBoard/AdminProfile/AdminProfile";
 import AdminRoute from "./AdminRoute";
+import AddScholarShips from "../DashBoard/AddScholarship/AddScholarShips";
 
 const router = createBrowserRouter([
     
@@ -60,7 +61,12 @@ const router = createBrowserRouter([
         {
           path:'/dashboard/Profile',
           element:<PrivateRoute><AdminProfile></AdminProfile></PrivateRoute>,
-        }
+        },
+        {
+          path:'/dashboard/addscholarship',
+          element:<PrivateRoute><AddScholarShips></AddScholarShips></PrivateRoute>,
+        },
+
         
       ]
     }

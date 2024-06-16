@@ -3,6 +3,8 @@ import { NavLink, Outlet } from "react-router-dom";
 import PageTitle from "../CommonComponent/PageTitle/PageTitle";
 import { FaAd, FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaSearch, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { MdAddCard } from "react-icons/md";
+
 
 const DashBoard = () => {
     const title='DashBoard'
@@ -15,19 +17,23 @@ const DashBoard = () => {
             <div className="w-64 min-h-screen bg-orange-400">
                 <ul className="menu p-4">
                     {
-                        isAdmin ? <>
-                            <li>
-                                <NavLink to="/dashboard/adminHome">
-                                    <FaHome></FaHome>
-                                    Admin Home</NavLink>
-                            </li>
+                        isAdmin ?
+                         <>
+                           
                             <li>
                                 <NavLink to="/dashboard/Profile">
                                 <MdOutlineAdminPanelSettings />
                                     Admin Profile</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/manageItems">
+                                <NavLink to="/dashboard/addscholarship">
+                                <MdAddCard />
+
+                                    Add Scholarship</NavLink>
+                            </li>
+
+                            <li>
+                                <NavLink to="/dashboard/scholarships">
                                     <FaList></FaList>
                                     Manage Items</NavLink>
                             </li>
