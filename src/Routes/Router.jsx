@@ -13,6 +13,7 @@ import AdminProfile from "../DashBoard/AdminProfile/AdminProfile";
 import AdminRoute from "./AdminRoute";
 import AddScholarShips from "../DashBoard/AddScholarship/AddScholarShips";
 import ManageScholarShip from "../DashBoard/ManageScholarShip/ManageScholarShip";
+import UpdateScholarship from "../DashBoard/UpdateScholarship/UpdateScholarship";
 
 const router = createBrowserRouter([
     
@@ -70,6 +71,12 @@ const router = createBrowserRouter([
         {
           path:'/dashboard/managescholarship',
           element:<PrivateRoute><ManageScholarShip></ManageScholarShip></PrivateRoute>,
+        },
+        {
+          path:'/dashboard/update/:id',
+          element:<UpdateScholarship></UpdateScholarship>,
+          loader: ({params}) => fetch(`http://localhost:5000/scholarship/${params.id}`)
+
         }
 
         
