@@ -4,6 +4,8 @@ import PageTitle from "../CommonComponent/PageTitle/PageTitle";
 import { FaAd, FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaSearch, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { MdAddCard } from "react-icons/md";
+import { MdSettingsApplications } from "react-icons/md";
+
 
 
 const DashBoard = () => {
@@ -38,9 +40,9 @@ const DashBoard = () => {
                                     Manage ScholarShip</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/bookings">
-                                    <FaBook></FaBook>
-                                    Manage Bookings</NavLink>
+                                <NavLink to="/dashboard/manageAppliedApplications">
+                                    <MdSettingsApplications></MdSettingsApplications>
+                                    Manage Applications</NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/users">

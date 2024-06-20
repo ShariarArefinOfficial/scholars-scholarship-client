@@ -14,6 +14,7 @@ import AdminRoute from "./AdminRoute";
 import AddScholarShips from "../DashBoard/AddScholarship/AddScholarShips";
 import ManageScholarShip from "../DashBoard/ManageScholarShip/ManageScholarShip";
 import UpdateScholarship from "../DashBoard/UpdateScholarship/UpdateScholarship";
+import ManageAppliedApplications from "../DashBoard/ManageAppliedApplications/ManageAppliedApplications";
 
 const router = createBrowserRouter([
     
@@ -75,7 +76,13 @@ const router = createBrowserRouter([
         {
           path:'/dashboard/update/:id',
           element:<UpdateScholarship></UpdateScholarship>,
-          loader: ({params}) => fetch(`http://localhost:5000/scholarship/${params.id}`)
+          loader: ({params}) => fetch(`${import.meta.env.VITE_URL}/scholarship/${params.id}`)
+
+        },
+        {
+          path:'/dashboard/manageAppliedApplications',
+          element:<ManageAppliedApplications></ManageAppliedApplications>,
+          loader: ({params}) => fetch(`${import.meta.env.VITE_URL}/applications`)
 
         }
 
