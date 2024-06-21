@@ -17,6 +17,8 @@ import UpdateScholarship from "../DashBoard/UpdateScholarship/UpdateScholarship"
 import ManageAppliedApplications from "../DashBoard/ManageAppliedApplications/ManageAppliedApplications";
 import ManageReviews from "../DashBoard/ManageReviews/ManageReviews";
 import MyApplications from "../DashBoard/User/MyApplications/MyApplications";
+//import Reviews from "../DashBoard/User/Reviews/Reviews";
+import MyReviews from "../DashBoard/User/Reviews/MyReviews";
 
 const router = createBrowserRouter([
     
@@ -101,7 +103,13 @@ const router = createBrowserRouter([
         {
           path:'dashboard/applications',
           element:<MyApplications></MyApplications>,
-        }
+        },
+        {
+          path:'dashboard/Reviews',
+          element:<MyReviews></MyReviews>,
+          //loader: ({params}) => fetch(`${import.meta.env.VITE_URL}/reviews?`)
+        },
+
 
 
         

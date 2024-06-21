@@ -24,7 +24,7 @@ const DashBoard = () => {
                                     User Profile</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/review">
+                                    <NavLink to="dashboard/Reviews">
                                         <FaAd></FaAd>
                                          Review</NavLink>
                                 </li>
@@ -34,6 +34,44 @@ const DashBoard = () => {
                                         My Applications</NavLink>
                                 </li>
     </>
+
+    const Admin=<>
+                           
+    <li>
+        <NavLink to="/dashboard/Profile">
+        <MdOutlineAdminPanelSettings />
+            Admin Profile</NavLink>
+    </li>
+    <li>
+        <NavLink to="/dashboard/addscholarship">
+        <MdAddCard />
+
+            Add Scholarship</NavLink>
+    </li>
+
+    <li>
+        <NavLink to="/dashboard/managescholarship">
+            <FaList></FaList>
+            Manage ScholarShip</NavLink>
+    </li>
+    <li>
+        <NavLink to="/dashboard/manageAppliedApplications">
+            <MdSettingsApplications></MdSettingsApplications>
+            Manage Applications</NavLink>
+    </li>
+    <li>
+        <NavLink to="/dashboard/manageReview">
+            <MdSettingsApplications></MdSettingsApplications>
+            Manage Reviews</NavLink>
+    </li>
+    <li>
+        <NavLink to="/dashboard/users">
+            <FaUsers></FaUsers>
+            All Users</NavLink>
+    </li>
+</>
+
+
     return (
         <>
             <PageTitle title={title}></PageTitle>
@@ -43,41 +81,7 @@ const DashBoard = () => {
                 <ul className="menu p-4">
                     {
                         isAdmin ?
-                         <>
-                           
-                            <li>
-                                <NavLink to="/dashboard/Profile">
-                                <MdOutlineAdminPanelSettings />
-                                    Admin Profile</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/addscholarship">
-                                <MdAddCard />
-
-                                    Add Scholarship</NavLink>
-                            </li>
-
-                            <li>
-                                <NavLink to="/dashboard/managescholarship">
-                                    <FaList></FaList>
-                                    Manage ScholarShip</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/manageAppliedApplications">
-                                    <MdSettingsApplications></MdSettingsApplications>
-                                    Manage Applications</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/manageReview">
-                                    <MdSettingsApplications></MdSettingsApplications>
-                                    Manage Reviews</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/users">
-                                    <FaUsers></FaUsers>
-                                    All Users</NavLink>
-                            </li>
-                        </>
+                            Admin
                             :
                             <>
                             {
