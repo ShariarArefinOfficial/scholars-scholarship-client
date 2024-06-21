@@ -12,6 +12,28 @@ import useAdmin from "../Hooks/useAdmin";
 const DashBoard = () => {
     const title='DashBoard'
     const [isAdmin] = useAdmin();
+    const user=<>
+                     <li>
+                                    <NavLink to="/dashboard/userHome">
+                                        <FaHome></FaHome>
+                                        User Home</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="dashboard/userProfile">
+                                    <MdOutlineAdminPanelSettings />
+                                    User Profile</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/dashboard/review">
+                                        <FaAd></FaAd>
+                                         Review</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="dashboard/applications">
+                                        <FaList></FaList>
+                                        My Applications</NavLink>
+                                </li>
+    </>
     return (
         <>
             <PageTitle title={title}></PageTitle>
@@ -58,31 +80,10 @@ const DashBoard = () => {
                         </>
                             :
                             <>
-                                <li>
-                                    <NavLink to="/dashboard/userHome">
-                                        <FaHome></FaHome>
-                                        User Home</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="dashboard/userProfile">
-                                    <MdOutlineAdminPanelSettings />
-                                    User Profile</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/dashboard/cart">
-                                        <FaShoppingCart></FaShoppingCart>
-                                        My Cart </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/dashboard/review">
-                                        <FaAd></FaAd>
-                                        Add a Review</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="dashboard/applications">
-                                        <FaList></FaList>
-                                        My Applications</NavLink>
-                                </li>
+                            {
+                                user
+                            }
+               
                             </>
                     }
                     {/* shared nav links */}

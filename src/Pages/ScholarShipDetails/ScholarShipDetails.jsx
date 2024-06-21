@@ -10,7 +10,7 @@ import useAuthContext from "../../Hooks/useAuthContext";
 //import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useApplication from "../../Hooks/useApplication";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { useEffect, useState } from "react";
+//import { useEffect, useState } from "react";
 
 const heading='User Reviews'
 const description='Explore genuine reviews from students who have benefited from our scholarship programs. Hear their stories, learn about their experiences, and see how these scholarships have impacted their educational journeys.'
@@ -51,7 +51,11 @@ const ScholarShipDetails = () => {
                 university_name,                
                 university_image,
                 application_fees,
-                scholarship_category
+                scholarship_category,
+                degree_name,
+                university_location,
+                subject_name
+
             }
             axiosPublic.post('/applications', applicationItem)
                 .then(res => {
