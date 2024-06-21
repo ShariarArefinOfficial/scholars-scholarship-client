@@ -15,6 +15,8 @@ import AddScholarShips from "../DashBoard/AddScholarship/AddScholarShips";
 import ManageScholarShip from "../DashBoard/ManageScholarShip/ManageScholarShip";
 import UpdateScholarship from "../DashBoard/UpdateScholarship/UpdateScholarship";
 import ManageAppliedApplications from "../DashBoard/ManageAppliedApplications/ManageAppliedApplications";
+import ManageReviews from "../DashBoard/ManageReviews/ManageReviews";
+import MyApplications from "../DashBoard/User/MyApplications/MyApplications";
 
 const router = createBrowserRouter([
     
@@ -84,7 +86,23 @@ const router = createBrowserRouter([
           element:<ManageAppliedApplications></ManageAppliedApplications>,
           loader: ({params}) => fetch(`${import.meta.env.VITE_URL}/applications`)
 
+        },
+        {
+          path:'/dashboard/manageReview',
+          element:<ManageReviews></ManageReviews>,
+         // loader: ({params}) => fetch(`${import.meta.env.VITE_URL}/applications`)
+
+        },
+        {/**user */},
+        {
+          path:'dashboard/userProfile',
+          element:<AdminProfile></AdminProfile>
+        },
+        {
+          path:'dashboard/applications',
+          element:<MyApplications></MyApplications>,
         }
+
 
         
       ]

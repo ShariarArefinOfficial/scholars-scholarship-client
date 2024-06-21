@@ -5,12 +5,13 @@ import { FaAd, FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaSearch, FaShopp
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { MdAddCard } from "react-icons/md";
 import { MdSettingsApplications } from "react-icons/md";
+import useAdmin from "../Hooks/useAdmin";
 
 
 
 const DashBoard = () => {
     const title='DashBoard'
-   const  isAdmin=true
+    const [isAdmin] = useAdmin();
     return (
         <>
             <PageTitle title={title}></PageTitle>
@@ -45,6 +46,11 @@ const DashBoard = () => {
                                     Manage Applications</NavLink>
                             </li>
                             <li>
+                                <NavLink to="/dashboard/manageReview">
+                                    <MdSettingsApplications></MdSettingsApplications>
+                                    Manage Reviews</NavLink>
+                            </li>
+                            <li>
                                 <NavLink to="/dashboard/users">
                                     <FaUsers></FaUsers>
                                     All Users</NavLink>
@@ -58,9 +64,9 @@ const DashBoard = () => {
                                         User Home</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/reservation">
-                                        <FaCalendar></FaCalendar>
-                                        Reservation</NavLink>
+                                    <NavLink to="dashboard/userProfile">
+                                    <MdOutlineAdminPanelSettings />
+                                    User Profile</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to="/dashboard/cart">
@@ -73,9 +79,9 @@ const DashBoard = () => {
                                         Add a Review</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/bookings">
+                                    <NavLink to="dashboard/applications">
                                         <FaList></FaList>
-                                        My Bookings</NavLink>
+                                        My Applications</NavLink>
                                 </li>
                             </>
                     }

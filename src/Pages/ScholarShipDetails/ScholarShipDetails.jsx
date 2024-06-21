@@ -47,6 +47,7 @@ const ScholarShipDetails = () => {
             const applicationItem = {
                 scholarshipId: _id,
                 email: user.email,
+                application_status:'pending',
                 university_name,                
                 university_image,
                 application_fees,
