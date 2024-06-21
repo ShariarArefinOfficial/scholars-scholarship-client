@@ -28,6 +28,37 @@ const MyReviews = () => {
     document.getElementById("reviewModal").showModal();
   };
 
+  const handleDelete = async (item) => {
+    const id=item._id;
+    try {
+      const response = await fetch(`${import.meta.env.VITE_URL}/reviews/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        Swal.fire({
+          title: 'Deleted!',
+          text: 'Review deleted successfully',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
+        setReview(review.filter(item => item._id !== id));
+      } else {
+        throw new Error('Failed to delete review');
+      }
+    } catch (error) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Failed to delete review',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+    }
+  };
+
   return (
     <div>
       <div>
@@ -62,7 +93,10 @@ const MyReviews = () => {
                     </button>
                   </td>
                   <td>
-                    <button className="btn btn-ghost btn-lg">
+                    <button
+                     onClick={() => handleDelete(item)}
+
+                    className="btn btn-ghost btn-lg">
                       <FaTrashAlt className="text-red-600"></FaTrashAlt>
                     </button>
                   </td>
