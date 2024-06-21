@@ -120,6 +120,12 @@ const DashBoard = () => {
           Manage ScholarShip
         </NavLink>
       </li>
+      <li>
+        <NavLink to="/dashboard/manageReview">
+          <MdSettingsApplications></MdSettingsApplications>
+          Manage Reviews
+        </NavLink>
+      </li>
     </>
   );
 
