@@ -15,6 +15,9 @@ const MyApplications = () => {
   const { register, handleSubmit, reset } = useForm();
   const {user}=useAuthContext()
   const axiosSecure=useAxiosSecure()
+  const totalPrice = application.reduce((total, item) => total + parseInt(item.application_fees), 0);
+  console.log(totalPrice)
+
 
   //console.log(user)
   const onSubmit = async (data) => {
@@ -70,7 +73,18 @@ const MyApplications = () => {
       <div>
         <SectionTitle heading="My Applications" subHeading=""></SectionTitle>
       </div>
-      <div>
+      <div className='flex flex-row items-center justify-around my-10 text-orange-500 font-bold'>
+        <p>Total Applications : <span>{application.length}</span> </p>
+        <p>Total Fees : <span>{totalPrice}</span> </p>
+        {application.length ? <Link to="/dashboard/payment">
+          <button className='btn bg-orange-500 text-white'>Payment</button>
+                </Link>:
+              <button disabled className='btn bg-orange-500 text-white'>Payment</button>
+                }
+        
+
+      </div>
+      <div className=' max-w-screen-lg mx-auto'>
         <div className="overflow-x-auto">
           <table className="table w-full">
             {/* head */}
@@ -79,7 +93,7 @@ const MyApplications = () => {
                 <th>#</th>
                 <th>University Name</th>
                 <th>University Address</th>
-                {application.feedback ? <th>Application Feedback</th> : <></>}
+                <th>Application Feedback</th>
                 <th>Subject Name</th>
                 <th>Applied Degree</th>
                 <th>Application Fees</th>
@@ -98,7 +112,7 @@ const MyApplications = () => {
                     <span>{item.university_location.country},</span>
                   </td>
                   {
-                    item.feedback ? <td>{item.feedback}</td> : <></>
+                    item.feedback ? <td>{item.feedback}</td> : <th></th>
                   }
                   <td className="font-semibold">{item.subject_name}</td>
                   <td className="font-semibold">{item.degree_name}</td>

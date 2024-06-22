@@ -19,6 +19,7 @@ import ManageReviews from "../DashBoard/ManageReviews/ManageReviews";
 import MyApplications from "../DashBoard/User/MyApplications/MyApplications";
 //import Reviews from "../DashBoard/User/Reviews/Reviews";
 import MyReviews from "../DashBoard/User/Reviews/MyReviews";
+import Payment from "../DashBoard/Payment/Payment";
 
 const router = createBrowserRouter([
     
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
         {
           path:'/dashboard/users',
           element:<PrivateRoute><AllUsers></AllUsers></PrivateRoute>,
+        },
+        {
+          path: 'payment',
+          element: <Payment></Payment>
         },
         {
           path:'/dashboard/Profile',

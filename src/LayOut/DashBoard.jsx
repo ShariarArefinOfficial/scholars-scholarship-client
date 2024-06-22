@@ -24,12 +24,7 @@ const DashBoard = () => {
   const [isModerator] = useModerator();
   const user = (
     <>
-      <li>
-        <NavLink to="/dashboard/userHome">
-          <FaHome></FaHome>
-          User Home
-        </NavLink>
-      </li>
+     
       <li>
         <NavLink to="dashboard/userProfile">
           <MdOutlineAdminPanelSettings />
